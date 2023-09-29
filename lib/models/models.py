@@ -1,6 +1,6 @@
 from models.__init__ import CONN, CURSOR
 
-# Player Model
+### PLAYER MODEL ###
 class Player:
 
     all = []
@@ -41,10 +41,7 @@ class Player:
         return player
     
 
-
 ### CRUD
-
-
 # Read
     # Get player usernames
     @classmethod
@@ -61,8 +58,6 @@ class Player:
         return cls.all
 
 
-
-
     # Find players by ID
     @classmethod
     def find_by_id(cls, id):
@@ -72,7 +67,6 @@ class Player:
             return players[0]
         else:
             return None
-
 
 
 # Create
@@ -96,7 +90,6 @@ class Player:
         Player.all.append(self)
 
 
-
 # Update
     # Update a player
     def update(self):
@@ -107,8 +100,6 @@ class Player:
         """
         CURSOR.execute(sql, (self.username, self.id))
         CONN.commit()
-
-
 
 
 # Delete
@@ -131,7 +122,8 @@ class Player:
             score.delete()
 
 
-# score
+
+### SCORE MODEL ###
 class Score:
 
     all = []
@@ -142,6 +134,9 @@ class Score:
         self.player.scores_list.append(self)
         self.value = value
 
+    def __repr__(self):
+        return f'{self.player}, has a score of: {self.value}'
+    
     @property
     def player(self):
         return self._player
@@ -153,6 +148,9 @@ class Score:
         else:
             raise Exception("Error: Player not found!")        
 
+### CRUD
+# Create
+    # Create new score
     @classmethod
     def create(cls, player_id, value):
         score = cls(player_id, value)
@@ -195,6 +193,8 @@ class Score:
         cls.all = []
 
 
+# Read
+    # Get score values
     @classmethod
     def get_all(cls):
         sql = """
@@ -207,7 +207,9 @@ class Score:
         cls.all = [cls.new_data_from_db(row) for row in all]
 
         return cls.all
-    
+
+# Update
+    # Update a score
     def update(self):
         sql = """
             UPDATE scores
@@ -217,6 +219,8 @@ class Score:
         CURSOR.execute(sql, (self.value, self.id) )
         CONN.commit()
 
+# Delete
+    # Delete a score
     def delete(self):
         sql = """
             DELETE from scores

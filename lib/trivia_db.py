@@ -35,7 +35,7 @@ trivia_db = [{
     },
     {
     "id": 8,
-    "question": "Water always boils at 100&deg;C, 212&deg;F, 373.15K, no matter where you are.",
+    "question": "Water always boils at 100 deg C, 212 deg F, 373.15K, no matter where you are.",
     "correct_answer": "False"
     },
     {

@@ -32,24 +32,14 @@ def get_all_players():
         print("Obtained player data.")
         keyboard_input = input("* Press 'enter' to continue *\n")
 
-
-# def get_player_by_id():
-#     if len(Player.all) == 0:
-#         print("Error: No players in the database!")
-#     else:
-#         player = search_by_id('find')
-#         print()
-#         print(player)
-#         print()
-#         if len(player.reviews) > 0:
-#             print("Here are the reviews for this player:")
-#             for score in player.reviews:
-#                 print(score)
-#         else:
-#             print("This player has no reviews.")
-#         print()
-#         print("Successfully retrieved hotel data!")
-#         keyboard_input = input("* Press 'enter' to continue *\n")
+def get_all_scores():
+    if len(Score.all) == 0:
+        print("Error: No scores recorded in database!")
+    else:
+        for score in Score.all:
+            print(score)
+        print("Obtained score data.")
+        keyboard_input = input("* Press 'enter' to continue *\n")
 
 def update_player_username_by_id():
     if len(Player.all) == 0:
@@ -68,7 +58,6 @@ def update_player_username_by_id():
         print("Username updated!")
         keyboard_input = input("* Press 'enter' to continue *\n")
 
-
 def delete_player_by_id():
     if len(Player.all) == 0:
         print("Error: No players in the database!")
@@ -77,8 +66,6 @@ def delete_player_by_id():
         player.delete()
         print(f"Player deleted!")
         keyboard_input = input("* Press 'enter' to continue *\n")
-
-
 
 def search_by_id(word):
     print(f"Enter the player id that you want to {word}:")
@@ -100,7 +87,6 @@ def search_by_id(word):
             player = None
 
     return player
-
 
 def exit_program():
     print("Exiting program. See you next time!")
