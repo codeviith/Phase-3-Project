@@ -113,11 +113,9 @@ class Player:
         CURSOR.execute(sql, (self.id,))
         CONN.commit()
         
-        # Remove the player instance from Player.all
+        # The codes below is to remove the player instance from Player.all
         Player.all = [player for player in Player.all if player.id != self.id]
 
-        # Delete the associated reviews from the database and remove the associated review instances from Review.all
-        # The idea here is that there should not exist reviews for a player that no longer exists
         for score in self.scores_list:
             score.delete()
 
