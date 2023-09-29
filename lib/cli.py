@@ -10,7 +10,6 @@ from helpers import (
     update_player_username_by_id,
     delete_player_by_id
 )
-
 import random
 
 
@@ -31,8 +30,6 @@ def trivia_game():
 
     while True:
         randomNum = random.randint(1, 10)
-
-
         current_trivia_dict = trivia_db[randomNum - 1]
     
         print(current_trivia_dict['question'])
@@ -54,7 +51,14 @@ def trivia_game():
             score_instance.update()
             
             print("Correct! 100 points has been added to your score!")
+            print(f'Your score is: {score_instance.value}')
+
+        if 600 <= score_instance.value < 700:
+            print("Boy, you're on a roll!")
         
+        if 1000 <= score_instance.value < 1100:
+            print("Sooo why aren't you on Jeopardy??")
+
 
 def main():
     while True:
